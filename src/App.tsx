@@ -3,7 +3,6 @@ import "./App.css";
 import SearchBar from "./components/SearchBar/SearchBar";
 import { type Repo, getUserRepos } from "./services/GithubApiService";
 
-
 function App() {
   const [userData, setUserData] = useState<Repo[]>([]);
 
@@ -19,19 +18,28 @@ function App() {
 
   return (
     <>
-      <SearchBar />
-      <h2>Repozytoria użytkownika:</h2>
-      <ul>
-        {userData.map((repo) => (
-          <li
-            onClick={() => navigateToRepo(repo.html_url)}
-            style={{ cursor: "pointer", color: "blue" }}
-            key={repo.name}
-          >
-            {repo.name}
-          </li>
-        ))}
-      </ul>
+      <div className="main-container">
+        <SearchBar />
+        <h2>Repozytoria użytkownika:</h2>
+        <ul>
+          {userData.map((repo) => (
+            <li
+              onClick={() => navigateToRepo(repo.html_url)}
+              key={repo.name}
+            >
+              {repo.name}
+            </li>
+          ))}
+                    {userData.map((repo) => (
+            <li
+              onClick={() => navigateToRepo(repo.html_url)}
+              key={repo.name}
+            >
+              {repo.name}
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }
